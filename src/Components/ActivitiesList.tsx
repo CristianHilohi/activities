@@ -1,9 +1,11 @@
-import {Typography} from "@mui/material";
+import {IconButton, Typography} from "@mui/material";
 import {useEffect} from "react";
 import {getActivities} from "../Store/ActivitiesActions";
 import {useDispatch, useSelector} from 'react-redux';
 import SingleActivity from "./SingleActivity";
 import {Activity, Todo} from "../Models";
+import './activities.scss';
+import AddIcon from '@mui/icons-material/Add';
 
 const ActivitiesList = () => {
     const {activities, loading, error} = useSelector((state: any) => state.activities);// TODO: replace any with right object type
@@ -17,7 +19,8 @@ const ActivitiesList = () => {
 
     const demoActivities: Array<Activity> = [
         {id: 1, title: 'drink water', description: 'stay hydrated bro', status: false, todoList: []},
-        {id: 2, title: 'sport', description: 'do exercises', status: false, todoList: demoTodos}
+        {id: 2, title: 'sport', description: 'do exercises', status: false, todoList: demoTodos},
+        {id: 3, title: 'call Saul Goodman for the \'thing\'', description: '', status: false, todoList: []}
     ];
 
     useEffect(() => {
@@ -26,11 +29,14 @@ const ActivitiesList = () => {
         // eslint-disable-next-line
     }, []);
 
-    return <div>
-        <Typography variant="h2" component="h2">
+    return <div className='activities-list'>
+        <Typography variant="h3" component="h2">
             My activities:
-            {demoActivities.map((activity) => <SingleActivity activity={activity} />)}
         </Typography>
+        {demoActivities.map((activity) => <SingleActivity activity={activity} />)}
+        <IconButton>
+            <AddIcon sx={{height: '50px', width: '50px'}}/>
+        </IconButton>
     </div>
 }
 

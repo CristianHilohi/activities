@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './theme/App.scss';
 import ActivitiesList from "./Components/ActivitiesList";
 
 function App() {

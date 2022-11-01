@@ -1,0 +1,14 @@
+.todo-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .single-todo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+  }
+}

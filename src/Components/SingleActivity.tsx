@@ -1,10 +1,12 @@
-import {Accordion, AccordionDetails, AccordionSummary, Checkbox} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, IconButton} from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EditIcon from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 import {useState} from "react";
 import {Activity} from "../Models";
 import SingleTodo from "./SingleTodo";
-import NewTodo from "./NewTodo";
+import AddIcon from "@mui/icons-material/Add";
+import TodoList from "./TodoList";
 
 const SingleActivity: React.FC<{activity: Activity}> = ({activity}) => {
     const {title, description, status, todoList} = activity;
@@ -20,17 +22,26 @@ const SingleActivity: React.FC<{activity: Activity}> = ({activity}) => {
     return <div className='activity'>
         <Accordion  onChange={handleChange}>
             <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
-                <Typography>
+                <Typography variant="h4" component="h3">
                     {title}
-                </Typography>
-                <Typography>
-                    {description}
                 </Typography>
                 <Checkbox checked={status}/>
             </AccordionSummary>
             <AccordionDetails>
-                <NewTodo />
-                {hasTodos && todoList.map((todo) => <SingleTodo todo={todo} />)}
+                <div className='activity-details'>
+                    <Typography>
+                        {description}
+                    </Typography>
+                    <IconButton>
+                        <EditIcon />
+                    </IconButton>
+                </div>
+
+                {hasTodos && <TodoList todoList={todoList}/>}
+
+                <Button variant="outlined" endIcon={<AddIcon/>}>
+                    Add todo
+                </Button>
             </AccordionDetails>
         </Accordion>
     </div>

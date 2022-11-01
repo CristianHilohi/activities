@@ -1,0 +1,26 @@
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  .activity {
+    width: 800px;
+
+    h3 {
+      display: flex;
+      align-items: flex-start;
+      width: 95%;
+    }
+
+    .activity-details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @media screen and (max-width: 850px) {
+      width: 300px;
+    }
+  }
+}
