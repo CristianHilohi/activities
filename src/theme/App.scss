@@ -4,6 +4,10 @@
   text-align: center;
   background: linear-gradient(0deg, var(--primary-color) 0%, var(--primary-faded) 76%);
   height: 100vh;
+  .page {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .App-logo {

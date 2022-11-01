@@ -5,8 +5,6 @@ import {Dispatch} from "redux";
 
 export const getActivities = () => async (dispatch: Dispatch) => {
     dispatch({type: actionTypes.GET_ACTIVITIES_START});
-    console.log('start')
-
     try {
         const response = await axios.get('/activities');
         dispatch({type: actionTypes.GET_ACTIVITIES_SUCCESS, payload: response.data.data});

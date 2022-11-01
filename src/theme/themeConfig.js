@@ -1,10 +1,13 @@
 import {createTheme} from "@mui/material";
-import {primary} from './colors';
+import {primary, white} from './colors';
 
 export const theme = createTheme({
     palette: {
         primary: {
             main: primary,
         },
+        info: {
+            main: white,
+        }
     },
 });
