@@ -1,6 +1,6 @@
 import React from 'react';
 import './theme/App.scss';
-import ActivitiesList from "./Components/ActivitiesList";
+import ActivitiesList from "./Components/Activities/ActivitiesList";
 import HeaderBar from "./Components/HeaderBar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

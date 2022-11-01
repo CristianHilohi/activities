@@ -13,19 +13,17 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <Auth0Provider
-                    domain="dev-5rdeuqv0k6e13w2w.us.auth0.com"
-                    clientId="uB2r8R3sy3vz5yHkm5WweZ7JmF0dOP4t"
-                    redirectUri={window.location.origin}
-                >
-                    <App/>
-                </Auth0Provider>
-            </ThemeProvider>
-        </Provider>
-    </React.StrictMode>
+    <Provider store={store}>
+        <ThemeProvider theme={theme}>
+            <Auth0Provider
+                domain="dev-5rdeuqv0k6e13w2w.us.auth0.com"
+                clientId="uB2r8R3sy3vz5yHkm5WweZ7JmF0dOP4t"
+                redirectUri={window.location.origin}
+            >
+                <App/>
+            </Auth0Provider>
+        </ThemeProvider>
+    </Provider>
 );
 
 reportWebVitals();

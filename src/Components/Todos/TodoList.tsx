@@ -1,4 +1,4 @@
-import {Todo} from "../Models";
+import {Todo} from "../../Models";
 import SingleTodo from "./SingleTodo";
 import './todos.scss'
 

@@ -3,10 +3,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 import {useState} from "react";
-import {Activity} from "../Models";
+import {Activity} from "../../Models";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from '@mui/icons-material/Delete';
-import TodoList from "./TodoList";
+import TodoList from "../Todos/TodoList";
 
 const SingleActivity: React.FC<{ activity: Activity }> = ({activity}) => {
     const {title, description, status, todoList} = activity;

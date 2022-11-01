@@ -1,9 +1,9 @@
 import {IconButton, Typography} from "@mui/material";
 import {useEffect} from "react";
-import {getActivities} from "../Store/ActivitiesActions";
+import {getActivities} from "../../Store/ActivitiesActions";
 import {useDispatch, useSelector} from 'react-redux';
-import SingleActivity from "./SingleActivity";
-import {Activity, Todo} from "../Models";
+import SingleActivity from './SingleActivity';
+import {Activity, Todo} from "../../Models";
 import './activities.scss';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -24,6 +24,7 @@ const ActivitiesList = () => {
     ];
 
     useEffect(() => {
+        console.log('here')
         // @ts-ignore
         dispatch(getActivities());
         // eslint-disable-next-line

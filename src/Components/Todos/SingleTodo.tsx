@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import {Checkbox, IconButton} from "@mui/material";
-import {Todo} from "../Models";
+import {Todo} from "../../Models";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
