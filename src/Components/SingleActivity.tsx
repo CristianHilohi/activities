@@ -4,11 +4,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 import {useState} from "react";
 import {Activity} from "../Models";
-import SingleTodo from "./SingleTodo";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from '@mui/icons-material/Delete';
 import TodoList from "./TodoList";
 
-const SingleActivity: React.FC<{activity: Activity}> = ({activity}) => {
+const SingleActivity: React.FC<{ activity: Activity }> = ({activity}) => {
     const {title, description, status, todoList} = activity;
     const hasTodos: boolean = todoList.length > 0;
 
@@ -20,7 +20,7 @@ const SingleActivity: React.FC<{activity: Activity}> = ({activity}) => {
 
 
     return <div className='activity'>
-        <Accordion  onChange={handleChange}>
+        <Accordion onChange={handleChange}>
             <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
                 <Typography variant="h4" component="h3">
                     {title}
@@ -32,14 +32,19 @@ const SingleActivity: React.FC<{activity: Activity}> = ({activity}) => {
                     <Typography>
                         {description}
                     </Typography>
-                    <IconButton>
-                        <EditIcon />
-                    </IconButton>
+                    <span>
+                        <IconButton>
+                            <EditIcon/>
+                        </IconButton>
+                        <IconButton>
+                            <DeleteIcon/>
+                        </IconButton>
+                    </span>
                 </div>
 
                 {hasTodos && <TodoList todoList={todoList}/>}
 
-                <Button variant="outlined" endIcon={<AddIcon/>}>
+                <Button variant="outlined" color='primary' endIcon={<AddIcon/>}>
                     Add todo
                 </Button>
             </AccordionDetails>
