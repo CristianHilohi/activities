@@ -2,13 +2,13 @@ import {Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, IconBut
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Activity} from "../../Models";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from '@mui/icons-material/Delete';
 import TodoList from "../Todos/TodoList";
 import {useDispatch} from "react-redux";
-import {deleteActivity} from "../../Store/ActivitiesActions";
+import {checkActivity, deleteActivity} from "../../Store/ActivitiesActions";
 
 const SingleActivity: React.FC<{
     activity: Activity,
@@ -20,11 +20,36 @@ const SingleActivity: React.FC<{
           setIsDialogVisible
       }) => {
     const {title, description, status, todoList} = activity;
-    const hasTodos: boolean = todoList.length > 0;
 
     const dispatch = useDispatch();
 
-    const [expanded, setExpanded] = useState<Boolean>(false);
+    const [expanded, setExpanded] = useState<boolean>(false);
+    const [checked, setChecked] = useState<boolean>(status);
+
+    useEffect(() => {
+        if(todoList.length > 0) {
+            let allDone = true;
+            todoList.forEach((todo) => {
+                if(!todo.status) {
+                    allDone = false;
+                }
+            });
+
+            if(allDone) {
+                // @ts-ignore
+                dispatch(checkActivity(true));
+            }
+
+            if(!allDone) {
+                // @ts-ignore
+                dispatch(checkActivity(false));
+            }
+        }
+    }, [activity])
+
+    const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(e.target.checked);
+    }
 
     const handleChange = () => {
         setExpanded(!expanded);
@@ -43,7 +68,7 @@ const SingleActivity: React.FC<{
                 <Typography variant="h4" component="h3">
                     {title}
                 </Typography>
-                <Checkbox checked={status}/>
+                <Checkbox checked={checked} disabled={activity.todoList.length > 0} onChange={handleCheck}/>
             </AccordionSummary>
             <AccordionDetails>
                 <div className='activity-details'>
@@ -60,7 +85,7 @@ const SingleActivity: React.FC<{
                     </span>
                 </div>
 
-                {hasTodos && <TodoList todoList={todoList}/>}
+                {todoList.length > 0 && <TodoList todoList={todoList}/>}
 
                 <Button variant="outlined" color='primary' endIcon={<AddIcon/>}>
                     Add todo

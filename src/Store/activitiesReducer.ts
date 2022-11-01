@@ -11,7 +11,7 @@ const demoTodos: Array<Todo> = [
 ];
 
 const demoActivities: Array<Activity> = [
-    {id: 1, title: 'drink water', description: 'stay hydrated bro', status: false, todoList: []},
+    {id: 1, title: 'drink water', description: 'stay hydrated bro', status: true, todoList: []},
     {id: 2, title: 'sport', description: 'do exercises', status: false, todoList: demoTodos},
     {id: 3, title: 'call Saul Goodman for the \'thing\'', description: '', status: false, todoList: []}
 ];
