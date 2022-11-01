@@ -15,7 +15,14 @@ const AddEditActivity: React.FC<{ isDialogOpen: boolean, setDialogOpen: Function
 
     const [isSaveDisabled, setIsSaveDisabled] = useState<boolean>(true);
     const [title, setTitle] = useState<string>('');
-    const [description, setDescription] = useState<string>('')
+    const [description, setDescription] = useState<string>('');
+
+    useEffect(() => {
+        if(activity) {
+            setTitle(activity.title);
+            setDescription(activity.description);
+        }
+    }, [])
 
     useEffect(() => {
         const titleValid = title.length > 0 && title.length < 30;

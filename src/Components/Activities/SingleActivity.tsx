@@ -7,10 +7,22 @@ import {Activity} from "../../Models";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from '@mui/icons-material/Delete';
 import TodoList from "../Todos/TodoList";
+import {useDispatch} from "react-redux";
+import {deleteActivity} from "../../Store/ActivitiesActions";
 
-const SingleActivity: React.FC<{ activity: Activity }> = ({activity}) => {
+const SingleActivity: React.FC<{
+    activity: Activity,
+    setActivityToBeEdited: Function,
+    setIsDialogVisible: Function
+}> = ({
+          activity,
+          setActivityToBeEdited,
+          setIsDialogVisible
+      }) => {
     const {title, description, status, todoList} = activity;
     const hasTodos: boolean = todoList.length > 0;
+
+    const dispatch = useDispatch();
 
     const [expanded, setExpanded] = useState<Boolean>(false);
 
@@ -18,6 +30,12 @@ const SingleActivity: React.FC<{ activity: Activity }> = ({activity}) => {
         setExpanded(!expanded);
     }
 
+    // @ts-ignore
+    const handleDeleteActivity = () => dispatch(deleteActivity(activity.id));
+
+    const handelEditActivity = () => {
+        setActivityToBeEdited(activity, setIsDialogVisible(true));
+    }
 
     return <div className='activity'>
         <Accordion onChange={handleChange}>
@@ -33,10 +51,10 @@ const SingleActivity: React.FC<{ activity: Activity }> = ({activity}) => {
                         {description}
                     </Typography>
                     <span>
-                        <IconButton>
+                        <IconButton onClick={handelEditActivity}>
                             <EditIcon/>
                         </IconButton>
-                        <IconButton>
+                        <IconButton onClick={handleDeleteActivity}>
                             <DeleteIcon/>
                         </IconButton>
                     </span>
