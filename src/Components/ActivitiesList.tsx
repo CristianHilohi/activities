@@ -14,7 +14,7 @@ const ActivitiesList = () => {
 
     const demoTodos: Array<Todo> = [
         {id: 1, title: 'push-ups', description: '', status: true},
-        {id: 1, title: 'russian twists', description: 'with 10 kg', status: false},
+        {id: 2, title: 'russian twists', description: 'with 10 kg', status: false},
     ];
 
     const demoActivities: Array<Activity> = [
@@ -33,7 +33,7 @@ const ActivitiesList = () => {
         <Typography variant="h3" component="h2">
             My activities:
         </Typography>
-        {demoActivities.map((activity) => <SingleActivity activity={activity} />)}
+        {demoActivities.map((activity) => <SingleActivity activity={activity} key={'activity' + activity.id} />)}
         <IconButton>
             <AddIcon sx={{height: '50px', width: '50px'}}/>
         </IconButton>

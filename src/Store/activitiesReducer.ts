@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes';
 import produce from 'immer';
+import { toast } from 'react-toastify';
+
+const genericErrorText = 'There seems to be an error. Please try again!';
 
 const initialState = {
     activities: [],
@@ -26,8 +29,19 @@ const reducer = (state=initialState, action: any) => produce (state, (draft) => 
         case actionTypes.CREATE_ACTIVITY_FAIL:
         case actionTypes.UPDATE_ACTIVITY_FAIL:
         case actionTypes.DELETE_ACTIVITY_FAIL:
-            draft.error = action.error;
+            const error = action.error ?? genericErrorText;
+            draft.error = error;
             draft.loading = false;
+            toast.error(error, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
             break;
     }
 })

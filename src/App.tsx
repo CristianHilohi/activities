@@ -2,20 +2,24 @@ import React from 'react';
 import './theme/App.scss';
 import ActivitiesList from "./Components/ActivitiesList";
 import HeaderBar from "./Components/HeaderBar";
-import {useUser} from "./useUser";
-
-export const UserContext = React.createContext(null);
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-    const userContext = useUser();
     return (
-        // @ts-ignore
-        <UserContext.Provider value={userContext}>
             <div className="App">
                 <HeaderBar/>
                 <ActivitiesList/>
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={5000}
+                    closeOnClick
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
             </div>
-        </UserContext.Provider>
     );
 }
 
