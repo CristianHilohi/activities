@@ -1,16 +1,23 @@
 import {IconButton, Typography} from "@mui/material";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getActivities} from "../../Store/ActivitiesActions";
 import {useDispatch, useSelector} from 'react-redux';
 import SingleActivity from './SingleActivity';
 import {Activity, Todo} from "../../Models";
 import './activities.scss';
 import AddIcon from '@mui/icons-material/Add';
+import AddEditActivity from "./AddEditActivity";
 
 const ActivitiesList = () => {
     const {activities, loading, error} = useSelector((state: any) => state.activities);// TODO: replace any with right object type
 
     const dispatch = useDispatch();
+
+    const [isDialogVisible, setIsDialogVisible] = useState<boolean>(false);
+
+    const openNewActivityDialog = () => {
+        setIsDialogVisible(true);
+    }
 
     const demoTodos: Array<Todo> = [
         {id: 1, title: 'push-ups', description: '', status: true},
@@ -35,9 +42,11 @@ const ActivitiesList = () => {
             My activities:
         </Typography>
         {demoActivities.map((activity) => <SingleActivity activity={activity} key={'activity' + activity.id} />)}
-        <IconButton>
+        <IconButton onClick={openNewActivityDialog}>
             <AddIcon sx={{height: '50px', width: '50px'}}/>
         </IconButton>
+
+        {isDialogVisible && <AddEditActivity isDialogOpen={isDialogVisible} setDialogOpen={setIsDialogVisible} activity={null} />}
     </div>
 }
 

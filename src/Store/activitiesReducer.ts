@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import produce from 'immer';
 import { toast } from 'react-toastify';
+import {Activity} from "../Models";
 
 const genericErrorText = 'There seems to be an error. Please try again!';
 
@@ -22,6 +23,25 @@ const reducer = (state=initialState, action: any) => produce (state, (draft) => 
 
         case actionTypes.GET_ACTIVITIES_SUCCESS:
             draft.activities = action.payload;
+            draft.loading = false;
+            break;
+
+        case actionTypes.CREATE_ACTIVITY_SUCCESS:
+            // @ts-ignore
+            draft.activities.push(action.payload);
+            draft.loading = false;
+            break;
+
+        case actionTypes.UPDATE_ACTIVITY_SUCCESS:
+            const updatedActivity:Activity = action.payload;
+            // @ts-ignore
+            const index = draft.activities.findIndex((activity) => activity.id === updatedActivity.id);
+
+            if(index !== -1) {
+                // @ts-ignore
+                draft.activities[index] = {...updatedActivity};
+            }
+
             draft.loading = false;
             break;
 
