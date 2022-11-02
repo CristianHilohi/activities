@@ -31,7 +31,7 @@ const ActivitiesList = () => {
         <Typography variant="h3" component="h2">
             My activities:
         </Typography>
-        {activities.map((activity: Activity) => <SingleActivity activity={activity} setActivityToBeEdited={setActivityToBeEdited} setIsDialogVisible={setIsDialogVisible} key={'activity' + activity.id}/>)}
+        {activities.map((activity: Activity) => <SingleActivity activity={activity} setActivityToBeEdited={setActivityToBeEdited} setIsActivityDialogVisible={setIsDialogVisible} key={'activity' + activity.id}/>)}
         <IconButton onClick={openNewActivityDialog}>
             <AddIcon sx={{height: '50px', width: '50px'}}/>
         </IconButton>

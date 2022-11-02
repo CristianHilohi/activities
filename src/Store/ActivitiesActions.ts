@@ -20,7 +20,7 @@ export const updateActivity = (activity: Activity) => async (dispatch: Dispatch)
     try {
         const response = await axios.patch(`/activities/${activity.id}`, activity);
         // response.data.data should be the same as activity.id
-        dispatch(updateActivitySuccess(response.data.data))
+        dispatch(updateActivitySuccess(response.data.data));
     } catch (error: any) { // TODO: replace any with right object type
         const errorMessage = error?.response?.data?.error;
         dispatch({type: actionTypes.UPDATE_ACTIVITY_FAIL, error: errorMessage});
@@ -39,7 +39,7 @@ export const checkActivity = (activity: Activity, check: boolean) => async (disp
     }
 }
 
-const updateActivitySuccess = (activityId: string) => {
+export const updateActivitySuccess = (activityId: string) => {
     return {type: actionTypes.UPDATE_ACTIVITY_SUCCESS, payload: activityId};
 }
 

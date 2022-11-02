@@ -13,11 +13,11 @@ import {checkActivity, deleteActivity} from "../../Store/ActivitiesActions";
 const SingleActivity: React.FC<{
     activity: Activity,
     setActivityToBeEdited: Function,
-    setIsDialogVisible: Function
+    setIsActivityDialogVisible: Function
 }> = ({
           activity,
           setActivityToBeEdited,
-          setIsDialogVisible
+          setIsActivityDialogVisible
       }) => {
     const {title, description, status, todoList} = activity;
 
@@ -25,6 +25,7 @@ const SingleActivity: React.FC<{
 
     const [expanded, setExpanded] = useState<boolean>(false);
     const [checked, setChecked] = useState<boolean>(status);
+    const [isTodoDialogVisible, setIsTodoDialogVisible] = useState<boolean>(false);
 
     useEffect(() => {
         if(todoList.length > 0) {
@@ -59,7 +60,7 @@ const SingleActivity: React.FC<{
     const handleDeleteActivity = () => dispatch(deleteActivity(activity.id));
 
     const handelEditActivity = () => {
-        setActivityToBeEdited(activity, setIsDialogVisible(true));
+        setActivityToBeEdited(activity, setIsActivityDialogVisible(true));
     }
 
     return <div className='activity'>
